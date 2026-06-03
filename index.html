@@ -299,48 +299,101 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
     <div class="section-header">
       <div class="section-title">Featured Projects</div>
     </div>
-    <div class="featured-row">
-      <div class="feat-card" onclick="openProject(0)">
-        <div class="feat-img" style="background:#1a1a2e"><img src="/offerreadbanner2.png" alt="OfferRead" onerror="this.style.display='none'"></div>
+    <div id="carousel" style="display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:8px;scrollbar-width:none;-ms-overflow-style:none">
+      <div class="feat-card" style="min-width:280px;flex-shrink:0" onclick="openProject(4)">
+        <div class="feat-img" style="background:#fff"><img src="/prescriptivefinal3.png" style="object-fit:contain;padding:4px;width:100%;height:100%"></div>
         <div class="feat-body">
-          <div class="feat-tag">SaaS · Live Product</div>
+          <div class="feat-tag" style="color:#F59E0B">Prescriptive Analytics</div>
+          <div class="feat-title">Meal Pricing Under Uncertain Demand</div>
+          <div class="feat-desc">Bayesian + Monte Carlo pricing engine. Strategy B strictly non-dominated across 77 fulfillment centers.</div>
+          <div class="feat-chips"><span class="feat-chip">Python</span><span class="feat-chip">Bayesian</span><span class="feat-chip">Monte Carlo</span></div>
+        </div>
+        <div class="feat-footer">View Project →</div>
+      </div>
+      <div class="feat-card" style="min-width:280px;flex-shrink:0" onclick="openProject(5)">
+        <div class="feat-img" style="background:#0d1117"><img src="/student_dashboard_picture.png" style="object-fit:cover;object-position:top;width:100%;height:100%"></div>
+        <div class="feat-body">
+          <div class="feat-tag" style="color:#3B82F6">Business Intelligence</div>
+          <div class="feat-title">Adidas US Sales Performance Dashboard</div>
+          <div class="feat-desc">Interactive Streamlit dashboard across 9,648 transactions and $899M revenue. Dual versions built.</div>
+          <div class="feat-chips"><span class="feat-chip">Python</span><span class="feat-chip">Streamlit</span><span class="feat-chip">Plotly</span></div>
+        </div>
+        <div class="feat-footer">View Project →</div>
+      </div>
+      <div class="feat-card" style="min-width:280px;flex-shrink:0" onclick="openProject(0)">
+        <div class="feat-img" style="background:#1a1a2e"><img src="/offerreadbanner2.png" style="object-fit:cover;object-position:top;width:100%;height:100%"></div>
+        <div class="feat-body">
+          <div class="feat-tag" style="color:#8B5CF6">SaaS · Live Product</div>
           <div class="feat-title">OfferRead — AI Real Estate Deal Analyzer</div>
-          <div class="feat-desc">Live SaaS platform delivering AI-powered investment verdicts on real estate deals.</div>
+          <div class="feat-desc">Live SaaS with paying customers. AI-powered investment verdicts on real estate deals.</div>
           <div class="feat-chips"><span class="feat-chip">React</span><span class="feat-chip">Claude API</span><span class="feat-chip">Stripe</span></div>
         </div>
         <div class="feat-footer">View Project →</div>
       </div>
-      <div class="feat-card" onclick="openProject(2)">
-        <div class="feat-img" style="background:#111827"><img src="/visualization_efficiency_comparison.png" alt="NEVI" onerror="this.style.display='none'"></div>
+      <div class="feat-card" style="min-width:280px;flex-shrink:0" onclick="openProject(2)">
+        <div class="feat-img" style="background:#111827"><img src="/visualization_efficiency_comparison.png" style="object-fit:contain;padding:4px;width:100%;height:100%"></div>
         <div class="feat-body">
-          <div class="feat-tag">MIP Optimization</div>
+          <div class="feat-tag" style="color:#10B981">MIP Optimization</div>
           <div class="feat-title">NEVI EV Charging Infrastructure</div>
-          <div class="feat-desc">MIP model optimizing $10M in federal EV charging investment across 400 California sites.</div>
+          <div class="feat-desc">MIP model optimizing $10M federal EV investment across 400 California sites. 3.6× efficiency gain.</div>
           <div class="feat-chips"><span class="feat-chip">Python</span><span class="feat-chip">PuLP</span><span class="feat-chip">Folium</span></div>
         </div>
         <div class="feat-footer">View Project →</div>
       </div>
-      <div class="feat-card" onclick="openProject(1)">
-        <div class="feat-img" style="background:#0d1117"><img src="/pepperdinesocial11.png" alt="Social Media" onerror="this.style.display='none'"></div>
+      <div class="feat-card" style="min-width:280px;flex-shrink:0" onclick="openProject(1)">
+        <div class="feat-img" style="background:#0d0d0d"><img src="/pepperdinesocial11.png" style="object-fit:contain;padding:4px;width:100%;height:100%"></div>
         <div class="feat-body">
-          <div class="feat-tag">Research · Board Presentation</div>
+          <div class="feat-tag" style="color:#06B6D4">Research · Board Presentation</div>
           <div class="feat-title">University Social Media & Admissions</div>
-          <div class="feat-desc">3-API pipeline across 51 universities. Presented to Pepperdine board.</div>
+          <div class="feat-desc">3-API pipeline, 51 universities, r=+0.530 IG→yield. Presented to Pepperdine board.</div>
           <div class="feat-chips"><span class="feat-chip">Python</span><span class="feat-chip">RapidAPI</span><span class="feat-chip">Pearson r</span></div>
         </div>
         <div class="feat-footer">View Project →</div>
       </div>
-      <div class="feat-card" onclick="openProject(3)">
-        <div class="feat-img" style="background:#1a0a0a"><img src="/ironviz_certificate.png" alt="Iron Viz" onerror="this.style.display='none'"></div>
+      <div class="feat-card" style="min-width:280px;flex-shrink:0" onclick="openProject(3)">
+        <div class="feat-img" style="background:#1a0a0a"><img src="/ironviz_certificate.png" style="object-fit:contain;padding:8px;width:100%;height:100%"></div>
         <div class="feat-body">
-          <div class="feat-tag">Competition · 1st Place</div>
+          <div class="feat-tag" style="color:#EF4444">Competition · 1st Place</div>
           <div class="feat-title">Iron Viz — Tableau Competition</div>
-          <div class="feat-desc">1st place at Pepperdine × Tableau/Salesforce Iron Viz Data Visualization Competition.</div>
+          <div class="feat-desc">1st place Pepperdine × Tableau/Salesforce. Judged on analytical depth and visual storytelling.</div>
           <div class="feat-chips"><span class="feat-chip">Tableau</span><span class="feat-chip">Data Storytelling</span></div>
         </div>
         <div class="feat-footer">View Project →</div>
       </div>
+      <div class="feat-card" style="min-width:280px;flex-shrink:0" onclick="openProject(6)">
+        <div class="feat-img" style="background:#1a0a0a;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+          <div style="font-size:32px">📊</div>
+          <div style="font-size:11px;color:var(--muted);text-align:center;padding:0 16px">Churn Prediction Model<br>AUC 0.720 · 11.7× Lift</div>
+        </div>
+        <div class="feat-body">
+          <div class="feat-tag" style="color:#F97316">Predictive Analytics</div>
+          <div class="feat-title">Elements Massage — Churn Prediction</div>
+          <div class="feat-desc">Logistic regression, AUC 0.720. Top 20% risk queue shows 11.7× lift. MSBA practicum client.</div>
+          <div class="feat-chips"><span class="feat-chip">Python</span><span class="feat-chip">Scikit-learn</span><span class="feat-chip">Logistic Reg</span></div>
+        </div>
+        <div class="feat-footer">View Project →</div>
+      </div>
+      <div class="feat-card" style="min-width:280px;flex-shrink:0" onclick="openProject(7)">
+        <div class="feat-img" style="background:#0a1a0a;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+          <div style="font-size:32px">⚕️</div>
+          <div style="font-size:11px;color:var(--muted);text-align:center;padding:0 16px">LP Optimization<br>$19.35M Cost Minimized</div>
+        </div>
+        <div class="feat-body">
+          <div class="feat-tag" style="color:#10B981">LP Optimization</div>
+          <div class="feat-title">Nurse Staffing Optimization</div>
+          <div class="feat-desc">LP model minimizing $19.35M annual cost across 3 nurse types and 12 forecast months.</div>
+          <div class="feat-chips"><span class="feat-chip">Excel Solver</span><span class="feat-chip">LP</span><span class="feat-chip">Regression</span></div>
+        </div>
+        <div class="feat-footer">View Project →</div>
+      </div>
     </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+      <div style="font-size:11px;color:var(--muted)">← scroll to see all 8 projects →</div>
+      <div style="display:flex;gap:8px">
+        <button onclick="document.getElementById('carousel').scrollBy({left:-296,behavior:'smooth'})" style="padding:6px 14px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);color:var(--text);cursor:pointer;font-size:12px">‹ Prev</button>
+        <button onclick="document.getElementById('carousel').scrollBy({left:296,behavior:'smooth'})" style="padding:6px 14px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);color:var(--text);cursor:pointer;font-size:12px">Next ›</button>
+      </div>
+    </div</div>
   </section>
 
   <!-- STATS ROW -->
@@ -644,9 +697,9 @@ function openProject(i){
     <a href="${l.h}" target="_blank" class="pp-link${l.p?' primary':''}">${l.t}</a>`).join('');
   // Screenshots
   const shots = p.screenshots||[];
-  document.getElementById('ppScreenshots').innerHTML = shots.length ? 
-    '<div class="pp-section-title" style="margin-top:24px">Project Visuals</div>' +
-    shots.map(s=>`<div class="pp-screenshot-wrap"><img src="${s.src}" alt="${s.caption}" class="pp-screenshot"><p class="pp-screenshot-caption">${s.caption}</p></div>`).join('') : '';
+  document.getElementById('ppScreenshots').innerHTML = shots.length ?
+    '<div class="pp-section-title" style="margin-top:24px;margin-bottom:12px">Project Visuals</div>' +
+    shots.map(s=>`<div class="pp-screenshot-wrap" style="margin-bottom:20px"><img src="${s.src}" alt="${s.caption}" style="width:100%;border-radius:10px;border:1px solid rgba(255,255,255,0.07);display:block"><p style="font-size:11px;color:#6B6B80;text-align:center;margin-top:8px;font-style:italic;line-height:1.5">${s.caption}</p></div>`).join('') : '';
   document.getElementById('projPage').classList.add('open');
   document.body.style.overflow='hidden';
   window.scrollTo(0,0);
