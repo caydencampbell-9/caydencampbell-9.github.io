@@ -402,6 +402,13 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
   </div>
 </div>
 
+<style>#carousel::-webkit-scrollbar{display:none}</style>
+<script>
+function scrollCarousel(dir){
+  const c=document.getElementById('carousel');
+  c.scrollBy({left:dir*296,behavior:'smooth'});
+}
+</script>
 <script>
 const projects = [
   {tag:"SaaS Product · Live",color:"#8B5CF6",title:"OfferRead — AI Real Estate Deal Analyzer",
@@ -433,9 +440,9 @@ const projects = [
     "6 data-driven strategic recommendations delivered directly to university board"],
    img:"/pepperdinesocial11.png",imgBg:"#0d0d0d",
    screenshots:[
-     {src:"/pepperdinesocial11.png",caption:"Full correlation heatmap — social media metrics vs. admissions outcomes across 38 universities"},
-     {src:"/pepperdinesocial13.png",caption:"Pepperdine percentile rankings — 87th percentile IG engagement, 13th percentile yield rate"},
-     {src:"/pepperdinesocial14.png",caption:"School positioning map — yield rate vs. total applications, sized by IG followers"}
+     {src:"/pepperdinesocial11.png",caption:"Pearson correlation heatmap across all social platforms and admissions outcomes. IG followers → yield rate (r=+0.530**) and TikTok avg likes → applications (r=+0.500**) are the two strongest signals — proving social media is a measurable admissions lever, not a vanity metric."},
+     {src:"/pepperdinesocial13.png",caption:"Pepperdine ranks 87th percentile in IG engagement but only 13th percentile in yield rate — the core actionable gap. High engagement is not converting to enrollment, pointing to a content strategy misalignment between reach and recruitment messaging."},
+     {src:"/pepperdinesocial14.png",caption:"Positioning map places Pepperdine relative to peer institutions on yield rate vs. total applications, sized by IG follower count. Pepperdine sits in the low-yield cluster despite strong social presence — validating the strategic recommendation to realign content toward prospective student conversion."}
    ],
    links:[{t:"View Deck ↗",h:"/Managing data final project.pdf",p:true},{t:"GitHub ↗",h:"https://github.com/caydencampbell-9/university-social-media-analysis"}]},
 
@@ -451,10 +458,10 @@ const projects = [
     "Interactive Folium maps with site name, port count, and DAC status tooltips for each strategy"],
    img:"/visualization_efficiency_comparison.png",imgBg:"#111827",imgContain:true,
    screenshots:[
-     {src:"/visualization_efficiency_comparison.png",caption:"Efficiency comparison — avg ZEVs covered per site across all three strategies"},
-     {src:"/budgeting_visualization.png",caption:"Total budget spent vs. strategic performance (ZEV coverage) by strategy"},
-     {src:"/zev_coverage_visualization.png",caption:"ZEV coverage by strategy — Demand Focus 168K vs Population Focus 46K"},
-     {src:"/selection_logic_visualization.png",caption:"Selection logic — selected 11 sites serve 15,341 avg ZEVs vs 2,209 for other 389 sites"}
+     {src:"/visualization_efficiency_comparison.png",caption:"Demand Focus delivers 15,341 ZEVs per site vs. 4,218 for Population Focus — 3.6× more efficient at identical cost. This is the core finding that drives the recommendation."},
+     {src:"/budgeting_visualization.png",caption:"All three strategies spend $9.95M (99.5% utilization) but produce dramatically different ZEV coverage: Demand Focus covers 168,751 ZEVs vs. Population Focus's 46,399 — proving that siting strategy, not budget, is the key variable."},
+     {src:"/zev_coverage_visualization.png",caption:"Long-term sensitivity analysis across $8M–$30M budgets confirms linear ZEV coverage scaling with no saturation point — supporting the case for expanded federal NEVI allocation beyond the current $10M."},
+     {src:"/selection_logic_visualization.png",caption:"The 11 selected sites serve 15,341 average ZEVs each vs. 2,209 for the other 389 candidate sites — validating that the optimizer correctly identified high-demand corridors while maintaining Justice40 DAC compliance."}
    ],
    links:[{t:"Download Deck ↗",h:"/NEVI_Charging_Optimization_JCT.pptx",p:true},{t:"GitHub ↗",h:"https://github.com/caydencampbell-9/NEVI"},{t:"Notebook ↗",h:"https://github.com/caydencampbell-9/NEVI"}]},
 
@@ -487,9 +494,9 @@ const projects = [
     "Sensitivity: capacity −10% → −$67.76M profit impact; food cost rate most sensitive assumption"],
    img:"/prescriptivefinal3.png",imgBg:"#fff",imgContain:true,
    screenshots:[
-     {src:"/prescriptivefinal3.png",caption:"Expected vs. downside profit by strategy — Strategy B dominates upper-right quadrant"},
-     {src:"/prescriptivefinal2.png",caption:"Profit CDF by strategy — Strategy B highest mean, lowest variance across 400 Monte Carlo runs"},
-     {src:"/prescriptivefinal1.png",caption:"Sensitivity tornado — capacity and food cost rate drive the largest profit swings ($67M impact)"}
+     {src:"/prescriptivefinal3.png",caption:"Strategy B (Balanced Growth) is strictly non-dominated — it sits furthest upper-right, meaning higher expected profit AND lower downside risk than every competing strategy. Strategies A, C, and D are all eliminated by formal dominance screening."},
+     {src:"/prescriptivefinal2.png",caption:"Cumulative distribution of profit outcomes across 400 Monte Carlo runs. Strategy B's CDF is shifted furthest right with the steepest slope — highest expected profit ($970M over 10 weeks) and lowest variance, making it the robust choice under uncertainty."},
+     {src:"/prescriptivefinal1.png",caption:"Tornado chart ranking assumptions by profit sensitivity. Capacity is the dominant variable — a 10% reduction drives a $67.76M profit impact. Food cost rate is second. This tells management where to focus forecasting investment for maximum decision value."}
    ],
    links:[{t:"View Deck ↗",h:"/final_deck.pdf",p:true},{t:"GitHub ↗",h:"https://github.com/caydencampbell-9/meal-pricing-uncertainty"}]},
 
@@ -504,8 +511,8 @@ const projects = [
     "AI-enhanced version adds OLS regression overlay and automated insight callouts identifying top performers"],
    img:"/student_dashboard_picture.png",imgBg:"#0d1117",
    screenshots:[
-     {src:"/student_dashboard_picture.png",caption:"Adidas AI-enhanced dashboard — revenue trend, product mix, channel split, and margin analysis"},
-     {src:"/student_dashboard_picture2.png",caption:"Student-authored dashboard — core interactivity with regional and year filters"}
+     {src:"/student_dashboard_picture.png",caption:"AI-enhanced Streamlit dashboard showing $899.9M total revenue, $332.1M operating profit, and 2.47M units sold. West region drives highest revenue; online channel shows strongest margin profile. OLS regression overlay identifies growth trajectory."},
+     {src:"/student_dashboard_picture2.png",caption:"Student-authored version demonstrating core interactivity — regional dropdown and year toggle update all four synchronized charts via shared session state. Both versions built on the same underlying 9,648-transaction dataset."}
    ],
    links:[{t:"GitHub ↗",h:"https://github.com/caydencampbell-9/adidas-sales-dashboard",p:true}]},
 
