@@ -143,13 +143,13 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 }
 .feat-card:hover{border-color:var(--border2);transform:translateY(-2px)}
 .feat-img{
-  height:140px;overflow:hidden;
+  height:160px;overflow:hidden;
   background:var(--surface2);
   display:flex;align-items:center;justify-content:center;
 }
-.feat-img img{width:100%;height:100%;object-fit:cover;object-position:top}
+.feat-img img{width:100%;height:100%;object-fit:cover;object-position:center top}
 .feat-img.dark{background:#111827}
-.feat-img.dark img{object-fit:contain}
+.feat-img.dark img{object-fit:contain;padding:8px}
 .feat-body{padding:16px;flex:1;display:flex;flex-direction:column;gap:8px}
 .feat-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple)}
 .feat-title{font-family:'Playfair Display',serif;font-weight:700;font-size:14px;color:var(--text);line-height:1.25}
@@ -217,6 +217,10 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .pp-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
 .pp-chip{font-family:'JetBrains Mono',monospace;font-size:10px;padding:5px 12px;border-radius:6px;background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
 .pp-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}
+.pp-screenshots{display:flex;flex-direction:column;gap:16px;margin-top:8px}
+.pp-screenshot{width:100%;border-radius:10px;border:1px solid var(--border);display:block}
+.pp-screenshot-caption{font-size:11px;color:var(--muted);text-align:center;margin-top:6px;font-style:italic}
+.pp-screenshot-wrap{margin-bottom:8px}
 .pp-link{font-size:13px;padding:10px 20px;border:1px solid var(--border2);color:var(--muted);text-decoration:none;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:11px;transition:all 0.15s}
 .pp-link:hover{border-color:var(--purple);color:var(--purple)}
 .pp-link.primary{background:var(--purple);color:#fff;border-color:var(--purple);font-weight:600}
@@ -393,6 +397,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
     <div class="pp-chips" id="ppChips"></div>
     <div class="pp-section-title">Key Findings & Methodology</div>
     <ul class="pp-bullets" id="ppBullets"></ul>
+    <div id="ppScreenshots" class="pp-screenshots"></div>
     <div class="pp-links" id="ppLinks"></div>
   </div>
 </div>
@@ -410,6 +415,10 @@ const projects = [
     "Validated concept with MSBA professor; distributed through Reddit real estate communities and Instagram (@OfferReadAI)",
     "Admin email whitelist, Terms of Service, Privacy Policy, and Restore Access flow all implemented"],
    img:"/offerreadbanner2.png",imgBg:"#0a0a1a",
+   screenshots:[
+     {src:"/offerread.png",caption:"Full deal report — Good Deal verdict, +$3,571/mo cash flow, Confidence 80"},
+     {src:"/offerreadbanner2.png",caption:"OfferRead hero — AI-powered real estate deal analyzer"}
+   ],
    links:[{t:"Live Site ↗",h:"https://offerread.ai",p:true},{t:"Portfolio ↗",h:"https://caydencampbell-9.github.io"}]},
 
   {tag:"Research · Board Presentation",color:"#06B6D4",title:"University Social Media & Admissions Analysis",
@@ -423,6 +432,11 @@ const projects = [
     "YouTube posting: Pepperdine posts every 268 days on average — 91st worst percentile in dataset",
     "6 data-driven strategic recommendations delivered directly to university board"],
    img:"/pepperdinesocial11.png",imgBg:"#0d0d0d",
+   screenshots:[
+     {src:"/pepperdinesocial11.png",caption:"Full correlation heatmap — social media metrics vs. admissions outcomes across 38 universities"},
+     {src:"/pepperdinesocial13.png",caption:"Pepperdine percentile rankings — 87th percentile IG engagement, 13th percentile yield rate"},
+     {src:"/pepperdinesocial14.png",caption:"School positioning map — yield rate vs. total applications, sized by IG followers"}
+   ],
    links:[{t:"View Deck ↗",h:"/Managing data final project.pdf",p:true},{t:"GitHub ↗",h:"https://github.com/caydencampbell-9/university-social-media-analysis"}]},
 
   {tag:"Prescriptive Analytics · MIP Optimization",color:"#10B981",title:"NEVI EV Charging Infrastructure Optimization",
@@ -436,6 +450,12 @@ const projects = [
     "Sensitivity analysis $8M–$30M confirmed linear coverage scaling — no saturation — supporting expanded federal allocation",
     "Interactive Folium maps with site name, port count, and DAC status tooltips for each strategy"],
    img:"/visualization_efficiency_comparison.png",imgBg:"#111827",imgContain:true,
+   screenshots:[
+     {src:"/visualization_efficiency_comparison.png",caption:"Efficiency comparison — avg ZEVs covered per site across all three strategies"},
+     {src:"/budgeting_visualization.png",caption:"Total budget spent vs. strategic performance (ZEV coverage) by strategy"},
+     {src:"/zev_coverage_visualization.png",caption:"ZEV coverage by strategy — Demand Focus 168K vs Population Focus 46K"},
+     {src:"/selection_logic_visualization.png",caption:"Selection logic — selected 11 sites serve 15,341 avg ZEVs vs 2,209 for other 389 sites"}
+   ],
    links:[{t:"Download Deck ↗",h:"/NEVI_Charging_Optimization_JCT.pptx",p:true},{t:"GitHub ↗",h:"https://github.com/caydencampbell-9/NEVI"},{t:"Notebook ↗",h:"https://github.com/caydencampbell-9/NEVI"}]},
 
   {tag:"Competition · 1st Place",color:"#EF4444",title:"Iron Viz — Tableau Data Visualization Competition",
@@ -449,6 +469,10 @@ const projects = [
     "Certificate of Participation issued by Pepperdine Graziadio Business School and Tableau/Salesforce",
     "Dashboard visuals are proprietary competition data and cannot be publicly shared"],
    img:"/ironviz_certificate.png",imgBg:"#fff",imgContain:true,
+   screenshots:[
+     {src:"/ironviz_certificate.png",caption:"Certificate of Participation — Iron Viz 1st Place, Pepperdine × Tableau/Salesforce"},
+     {src:"/tableauwinnerpic.jpeg",caption:"Award ceremony — Pepperdine Graziadio × Tableau/Salesforce, March 2026"}
+   ],
    links:[{t:"View Certificate ↗",h:"/Tableau Event CERTIFICATE OF PARTICIPATION Cayden C Campbell .pdf",p:true}]},
 
   {tag:"Prescriptive Analytics · Final Project",color:"#F59E0B",title:"Meal Pricing Under Uncertain Demand",
@@ -462,6 +486,11 @@ const projects = [
     "Automation pipeline: weekly data pull → Bayesian posterior update → strategy engine → human override gate",
     "Sensitivity: capacity −10% → −$67.76M profit impact; food cost rate most sensitive assumption"],
    img:"/prescriptivefinal3.png",imgBg:"#fff",imgContain:true,
+   screenshots:[
+     {src:"/prescriptivefinal3.png",caption:"Expected vs. downside profit by strategy — Strategy B dominates upper-right quadrant"},
+     {src:"/prescriptivefinal2.png",caption:"Profit CDF by strategy — Strategy B highest mean, lowest variance across 400 Monte Carlo runs"},
+     {src:"/prescriptivefinal1.png",caption:"Sensitivity tornado — capacity and food cost rate drive the largest profit swings ($67M impact)"}
+   ],
    links:[{t:"View Deck ↗",h:"/final_deck.pdf",p:true},{t:"GitHub ↗",h:"https://github.com/caydencampbell-9/meal-pricing-uncertainty"}]},
 
   {tag:"Business Intelligence · Streamlit",color:"#3B82F6",title:"Adidas US Sales Performance Dashboard",
@@ -474,6 +503,10 @@ const projects = [
     "West region highest revenue contributor across both years; online channel strongest margin profile",
     "AI-enhanced version adds OLS regression overlay and automated insight callouts identifying top performers"],
    img:"/student_dashboard_picture.png",imgBg:"#0d1117",
+   screenshots:[
+     {src:"/student_dashboard_picture.png",caption:"Adidas AI-enhanced dashboard — revenue trend, product mix, channel split, and margin analysis"},
+     {src:"/student_dashboard_picture2.png",caption:"Student-authored dashboard — core interactivity with regional and year filters"}
+   ],
    links:[{t:"GitHub ↗",h:"https://github.com/caydencampbell-9/adidas-sales-dashboard",p:true}]},
 
   {tag:"Predictive Analytics · Churn Modeling",color:"#F97316",title:"Elements Massage — Churn Prediction Model",
@@ -602,6 +635,11 @@ function openProject(i){
   document.getElementById('ppBullets').innerHTML=p.bullets.map(b=>`<li>${b}</li>`).join('');
   document.getElementById('ppLinks').innerHTML=p.links.map(l=>`
     <a href="${l.h}" target="_blank" class="pp-link${l.p?' primary':''}">${l.t}</a>`).join('');
+  // Screenshots
+  const shots = p.screenshots||[];
+  document.getElementById('ppScreenshots').innerHTML = shots.length ? 
+    '<div class="pp-section-title" style="margin-top:24px">Project Visuals</div>' +
+    shots.map(s=>`<div class="pp-screenshot-wrap"><img src="${s.src}" alt="${s.caption}" class="pp-screenshot"><p class="pp-screenshot-caption">${s.caption}</p></div>`).join('') : '';
   document.getElementById('projPage').classList.add('open');
   document.body.style.overflow='hidden';
   window.scrollTo(0,0);
