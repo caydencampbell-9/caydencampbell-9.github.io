@@ -299,28 +299,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
     <div class="section-header">
       <div class="section-title">Featured Projects</div>
     </div>
-    <div id="carousel" style="display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:8px;scrollbar-width:none;-ms-overflow-style:none">
-      <div class="feat-card" style="min-width:280px;flex-shrink:0" onclick="openProject(4)">
-        <div class="feat-img" style="background:#fff"><img src="/prescriptivefinal3.png" style="object-fit:contain;padding:4px;width:100%;height:100%"></div>
-        <div class="feat-body">
-          <div class="feat-tag" style="color:#F59E0B">Prescriptive Analytics</div>
-          <div class="feat-title">Meal Pricing Under Uncertain Demand</div>
-          <div class="feat-desc">Bayesian + Monte Carlo pricing engine. Strategy B strictly non-dominated across 77 fulfillment centers.</div>
-          <div class="feat-chips"><span class="feat-chip">Python</span><span class="feat-chip">Bayesian</span><span class="feat-chip">Monte Carlo</span></div>
-        </div>
-        <div class="feat-footer">View Project →</div>
-      </div>
-      <div class="feat-card" style="min-width:280px;flex-shrink:0" onclick="openProject(5)">
-        <div class="feat-img" style="background:#0d1117"><img src="/student_dashboard_picture.png" style="object-fit:cover;object-position:top;width:100%;height:100%"></div>
-        <div class="feat-body">
-          <div class="feat-tag" style="color:#3B82F6">Business Intelligence</div>
-          <div class="feat-title">Adidas US Sales Performance Dashboard</div>
-          <div class="feat-desc">Interactive Streamlit dashboard across 9,648 transactions and $899M revenue. Dual versions built.</div>
-          <div class="feat-chips"><span class="feat-chip">Python</span><span class="feat-chip">Streamlit</span><span class="feat-chip">Plotly</span></div>
-        </div>
-        <div class="feat-footer">View Project →</div>
-      </div>
-      <div class="feat-card" style="min-width:280px;flex-shrink:0" onclick="openProject(0)">
+    <div id="carousel" style="display:grid;grid-template-columns:repeat(8,calc(25% - 13px));gap:16px;overflow:hidden;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);scrollbar-width:none">
+      <div class="feat-card" style="scroll-snap-align:start" onclick="openProject(0)">
         <div class="feat-img" style="background:#1a1a2e"><img src="/offerreadbanner2.png" style="object-fit:cover;object-position:top;width:100%;height:100%"></div>
         <div class="feat-body">
           <div class="feat-tag" style="color:#8B5CF6">SaaS · Live Product</div>
@@ -330,7 +310,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
         </div>
         <div class="feat-footer">View Project →</div>
       </div>
-      <div class="feat-card" style="min-width:280px;flex-shrink:0" onclick="openProject(2)">
+      <div class="feat-card" style="scroll-snap-align:start" onclick="openProject(2)">
         <div class="feat-img" style="background:#111827"><img src="/visualization_efficiency_comparison.png" style="object-fit:contain;padding:4px;width:100%;height:100%"></div>
         <div class="feat-body">
           <div class="feat-tag" style="color:#10B981">MIP Optimization</div>
@@ -340,7 +320,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
         </div>
         <div class="feat-footer">View Project →</div>
       </div>
-      <div class="feat-card" style="min-width:280px;flex-shrink:0" onclick="openProject(1)">
+      <div class="feat-card" style="scroll-snap-align:start" onclick="openProject(1)">
         <div class="feat-img" style="background:#0d0d0d"><img src="/pepperdinesocial11.png" style="object-fit:contain;padding:4px;width:100%;height:100%"></div>
         <div class="feat-body">
           <div class="feat-tag" style="color:#06B6D4">Research · Board Presentation</div>
@@ -350,7 +330,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
         </div>
         <div class="feat-footer">View Project →</div>
       </div>
-      <div class="feat-card" style="min-width:280px;flex-shrink:0" onclick="openProject(3)">
+      <div class="feat-card" style="scroll-snap-align:start" onclick="openProject(3)">
         <div class="feat-img" style="background:#1a0a0a"><img src="/ironviz_certificate.png" style="object-fit:contain;padding:8px;width:100%;height:100%"></div>
         <div class="feat-body">
           <div class="feat-tag" style="color:#EF4444">Competition · 1st Place</div>
@@ -360,20 +340,27 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
         </div>
         <div class="feat-footer">View Project →</div>
       </div>
-      <div class="feat-card" style="min-width:280px;flex-shrink:0" onclick="openProject(6)">
-        <div class="feat-img" style="background:#1a0a0a;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
-          <div style="font-size:32px">📊</div>
-          <div style="font-size:11px;color:var(--muted);text-align:center;padding:0 16px">Churn Prediction Model<br>AUC 0.720 · 11.7× Lift</div>
-        </div>
+      <div class="feat-card" style="scroll-snap-align:start" onclick="openProject(4)">
+        <div class="feat-img" style="background:#fff"><img src="/prescriptivefinal3.png" style="object-fit:contain;padding:4px;width:100%;height:100%"></div>
         <div class="feat-body">
-          <div class="feat-tag" style="color:#F97316">Predictive Analytics</div>
-          <div class="feat-title">Elements Massage — Churn Prediction</div>
-          <div class="feat-desc">Logistic regression, AUC 0.720. Top 20% risk queue shows 11.7× lift. MSBA practicum client.</div>
-          <div class="feat-chips"><span class="feat-chip">Python</span><span class="feat-chip">Scikit-learn</span><span class="feat-chip">Logistic Reg</span></div>
+          <div class="feat-tag" style="color:#F59E0B">Prescriptive Analytics</div>
+          <div class="feat-title">Meal Pricing Under Uncertain Demand</div>
+          <div class="feat-desc">Bayesian + Monte Carlo pricing engine. Strategy B strictly non-dominated across 77 fulfillment centers.</div>
+          <div class="feat-chips"><span class="feat-chip">Python</span><span class="feat-chip">Bayesian</span><span class="feat-chip">Monte Carlo</span></div>
         </div>
         <div class="feat-footer">View Project →</div>
       </div>
-      <div class="feat-card" style="min-width:280px;flex-shrink:0" onclick="openProject(7)">
+      <div class="feat-card" style="scroll-snap-align:start" onclick="openProject(5)">
+        <div class="feat-img" style="background:#0d1117"><img src="/student_dashboard_picture.png" style="object-fit:cover;object-position:top;width:100%;height:100%"></div>
+        <div class="feat-body">
+          <div class="feat-tag" style="color:#3B82F6">Business Intelligence</div>
+          <div class="feat-title">Adidas US Sales Performance Dashboard</div>
+          <div class="feat-desc">Interactive Streamlit dashboard across 9,648 transactions and $899M revenue. Dual versions built.</div>
+          <div class="feat-chips"><span class="feat-chip">Python</span><span class="feat-chip">Streamlit</span><span class="feat-chip">Plotly</span></div>
+        </div>
+        <div class="feat-footer">View Project →</div>
+      </div>
+      <div class="feat-card" style="scroll-snap-align:start" onclick="openProject(7)">
         <div class="feat-img" style="background:#0a1a0a;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
           <div style="font-size:32px">⚕️</div>
           <div style="font-size:11px;color:var(--muted);text-align:center;padding:0 16px">LP Optimization<br>$19.35M Cost Minimized</div>
@@ -386,7 +373,27 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
         </div>
         <div class="feat-footer">View Project →</div>
       </div>
+      <div class="feat-card" style="scroll-snap-align:start" onclick="openProject(6)">
+        <div class="feat-img" style="background:#1a0a0a;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+          <div style="font-size:32px">📊</div>
+          <div style="font-size:11px;color:var(--muted);text-align:center;padding:0 16px">Churn Prediction Model<br>AUC 0.720 · 11.7× Lift</div>
+        </div>
+        <div class="feat-body">
+          <div class="feat-tag" style="color:#F97316">Predictive Analytics</div>
+          <div class="feat-title">Elements Massage — Churn Prediction</div>
+          <div class="feat-desc">Logistic regression, AUC 0.720. Top 20% risk queue shows 11.7× lift. MSBA practicum client.</div>
+          <div class="feat-chips"><span class="feat-chip">Python</span><span class="feat-chip">Scikit-learn</span><span class="feat-chip">Logistic Reg</span></div>
+        </div>
+        <div class="feat-footer">View Project →</div>
+      </div>
     </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px">
+      <div id="carousel-label" style="font-size:11px;color:var(--muted)">Showing 1–4 of 8 featured projects</div>
+      <div style="display:flex;gap:8px">
+        <button id="prev-btn" onclick="carouselPage(-1)" style="padding:7px 18px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);color:var(--muted);cursor:pointer;font-size:13px;font-family:inherit;opacity:0.4" disabled>‹ Prev</button>
+        <button id="next-btn" onclick="carouselPage(1)" style="padding:7px 18px;border-radius:6px;border:1px solid var(--purple);background:var(--purple);color:#fff;cursor:pointer;font-size:13px;font-family:inherit">Next ›</button>
+      </div>
+    </div</div>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
       <div style="font-size:11px;color:var(--muted)">← scroll to see all 8 projects →</div>
       <div style="display:flex;gap:8px">
@@ -457,9 +464,28 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 
 <style>#carousel::-webkit-scrollbar{display:none}</style>
 <script>
-function scrollCarousel(dir){
-  const c=document.getElementById('carousel');
-  c.scrollBy({left:dir*296,behavior:'smooth'});
+var carouselCurrentPage = 0;
+function carouselPage(dir){
+  carouselCurrentPage = Math.max(0, Math.min(1, carouselCurrentPage + dir));
+  const c = document.getElementById('carousel');
+  // Shift grid by translating — toggle between showing cards 1-4 and 5-8
+  if(carouselCurrentPage === 0){
+    c.style.transform = 'translateX(0)';
+    document.getElementById('carousel-label').textContent = 'Showing 1–4 of 8 featured projects';
+    document.getElementById('prev-btn').style.opacity='0.4';
+    document.getElementById('prev-btn').disabled=true;
+    document.getElementById('next-btn').style.opacity='1';
+    document.getElementById('next-btn').disabled=false;
+  } else {
+    // Move by exactly 4 card widths + gaps
+    const cardW = c.offsetWidth / 4;
+    c.style.transform = 'translateX(calc(-400% - 64px))';
+    document.getElementById('carousel-label').textContent = 'Showing 5–8 of 8 featured projects';
+    document.getElementById('prev-btn').style.opacity='1';
+    document.getElementById('prev-btn').disabled=false;
+    document.getElementById('next-btn').style.opacity='0.4';
+    document.getElementById('next-btn').disabled=true;
+  }
 }
 </script>
 <script>
