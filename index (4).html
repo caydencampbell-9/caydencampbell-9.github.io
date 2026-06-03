@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cayden Campbell — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0C0C0F;--surface:#13131A;--surface2:#1A1A24;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);
+  --text:#EEEEF0;--muted:#6B6B80;--dim:#3A3A50;
+  --purple:#8B5CF6;--teal:#06B6D4;--green:#10B981;--amber:#F59E0B;--red:#EF4444;
+  --sidebar:240px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:14px;line-height:1.6;display:flex;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{
+  width:var(--sidebar);min-height:100vh;
+  background:var(--surface);
+  border-right:1px solid var(--border);
+  padding:32px 20px;
+  position:fixed;top:0;left:0;bottom:0;
+  display:flex;flex-direction:column;
+  z-index:100;overflow-y:auto;
+}
+.sidebar-logo{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:40px;padding-bottom:28px;
+  border-bottom:1px solid var(--border);
+}
+.logo-avatar{
+  width:42px;height:42px;border-radius:10px;
+  background:linear-gradient(135deg,var(--purple),var(--teal));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-weight:800;font-size:16px;color:#fff;
+  flex-shrink:0;
+}
+.logo-name{font-family:'Playfair Display',serif;font-weight:700;font-size:14px;color:var(--text);line-height:1.2}
+.logo-sub{font-size:11px;color:var(--muted);margin-top:2px}
+
+.status{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 12px;border-radius:8px;
+  background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);
+  margin-bottom:32px;font-size:11px;color:var(--green);font-weight:500;
+}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+.nav-section{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;padding:0 4px}
+.nav-link{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 12px;border-radius:8px;
+  color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;
+  transition:all 0.15s;margin-bottom:2px;
+}
+.nav-link:hover,.nav-link.active{background:rgba(139,92,246,0.1);color:var(--text)}
+.nav-link.active{color:var(--purple)}
+.nav-icon{font-size:15px;width:20px;text-align:center}
+
+.sidebar-stack{margin-top:auto;padding-top:24px;border-top:1px solid var(--border)}
+.stack-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
+.stack-chips{display:flex;flex-wrap:wrap;gap:5px}
+.stack-chip{font-family:'JetBrains Mono',monospace;font-size:9.5px;padding:3px 8px;border-radius:4px;background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+
+.sidebar-contact{margin-top:16px;display:flex;flex-direction:column;gap:6px}
+.contact-link{font-size:11px;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.15s}
+.contact-link:hover{color:var(--text)}
+
+/* MAIN */
+.main{margin-left:var(--sidebar);flex:1;min-height:100vh}
+
+/* HERO */
+.hero{
+  padding:28px 56px 20px;
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(139,92,246,0.08),transparent 70%);
+  pointer-events:none;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 14px;border-radius:20px;
+  background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.25);
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--purple);
+  margin-bottom:24px;
+}
+.hero-title{
+  font-family:'Playfair Display',serif;font-weight:800;
+  font-size:clamp(24px,3vw,36px);line-height:1.1;
+  color:var(--text);margin-bottom:16px;
+}
+.hero-title span{color:var(--purple)}
+.hero-sub{font-size:13px;color:var(--muted);max-width:480px;line-height:1.6;margin-bottom:20px}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.btn-primary{
+  padding:11px 24px;background:var(--purple);color:#fff;
+  border:none;border-radius:8px;font-size:13px;font-weight:600;
+  cursor:pointer;text-decoration:none;transition:opacity 0.2s;font-family:'Inter',sans-serif;
+}
+.btn-primary:hover{opacity:0.85}
+.btn-ghost{
+  padding:11px 24px;background:transparent;color:var(--muted);
+  border:1px solid var(--border2);border-radius:8px;font-size:13px;font-weight:500;
+  cursor:pointer;text-decoration:none;transition:all 0.2s;font-family:'Inter',sans-serif;
+}
+.btn-ghost:hover{color:var(--text);border-color:rgba(255,255,255,0.25)}
+.hero-stats{
+  display:flex;gap:0;
+  border-top:1px solid var(--border);padding-top:16px;
+}
+.hero-stat{flex:1;padding:0 28px 0 0}
+.hero-stat+.hero-stat{padding-left:28px;border-left:1px solid var(--border)}
+.stat-n{font-family:'Playfair Display',serif;font-weight:800;font-size:20px;color:var(--text);display:block}
+.stat-l{font-size:12px;color:var(--muted);margin-top:2px}
+
+/* SECTIONS */
+.section{padding:52px 56px}
+.section+.section{border-top:1px solid var(--border)}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
+.section-title{font-family:'Playfair Display',serif;font-weight:700;font-size:20px;color:var(--text)}
+.section-link{font-size:12px;color:var(--purple);text-decoration:none;font-weight:500}
+
+/* FEATURED CARDS — horizontal scroll row */
+.featured-row{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+}
+.feat-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+  text-decoration:none;color:inherit;
+  transition:border-color 0.2s,transform 0.2s;
+  display:flex;flex-direction:column;
+}
+.feat-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.feat-img{
+  height:140px;overflow:hidden;
+  background:var(--surface2);
+  display:flex;align-items:center;justify-content:center;
+}
+.feat-img img{width:100%;height:100%;object-fit:cover;object-position:top}
+.feat-img.dark{background:#111827}
+.feat-img.dark img{object-fit:contain}
+.feat-body{padding:16px;flex:1;display:flex;flex-direction:column;gap:8px}
+.feat-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple)}
+.feat-title{font-family:'Playfair Display',serif;font-weight:700;font-size:14px;color:var(--text);line-height:1.25}
+.feat-desc{font-size:11.5px;color:var(--muted);line-height:1.55;flex:1}
+.feat-chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.feat-chip{font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 7px;border-radius:4px;background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+.feat-footer{padding:12px 16px;border-top:1px solid var(--border);font-size:11px;color:var(--purple);font-weight:500}
+
+/* ALL PROJECTS — single column list */
+.proj-list{display:flex;flex-direction:column;gap:0}
+.proj-row{
+  display:grid;grid-template-columns:52px 1fr auto;
+  align-items:center;gap:20px;
+  padding:20px 0;border-bottom:1px solid var(--border);
+  text-decoration:none;color:inherit;
+  transition:background 0.15s;cursor:pointer;
+  position:relative;
+}
+.proj-row::before{
+  content:'';position:absolute;left:-56px;right:-56px;top:0;bottom:0;
+  background:rgba(255,255,255,0.02);opacity:0;transition:opacity 0.15s;
+}
+.proj-row:hover::before{opacity:1}
+.proj-row:hover .proj-arrow{color:var(--purple);transform:translate(3px,-3px)}
+.proj-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);text-align:right}
+.proj-info{}
+.proj-tag-row{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.proj-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase}
+.proj-name{font-family:'Playfair Display',serif;font-weight:600;font-size:15px;color:var(--text);margin-bottom:4px}
+.proj-desc{font-size:12px;color:var(--muted);line-height:1.5;max-width:520px}
+.proj-arrow{color:var(--dim);font-size:18px;transition:all 0.15s}
+
+/* ACHIEVEMENT CARD */
+.achieve-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:20px 24px;
+  display:flex;align-items:center;gap:16px;margin-bottom:12px;
+}
+.achieve-icon{font-size:28px;flex-shrink:0}
+.achieve-val{font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--text)}
+.achieve-label{font-size:12px;color:var(--muted);margin-top:2px}
+
+/* PROJECT PAGE */
+.proj-page{display:none;position:fixed;inset:0;z-index:200;background:var(--bg);overflow-y:auto;padding:0}
+.proj-page.open{display:block}
+.proj-page-inner{max-width:780px;margin:0 auto;padding:52px 40px 80px}
+.back-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  color:var(--muted);font-size:13px;cursor:pointer;
+  margin-bottom:36px;background:none;border:none;font-family:'Inter',sans-serif;
+  padding:0;transition:color 0.15s;
+}
+.back-btn:hover{color:var(--text)}
+.pp-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;display:block}
+.pp-title{font-family:'Playfair Display',serif;font-weight:800;font-size:36px;color:var(--text);line-height:1.1;margin-bottom:16px}
+.pp-desc{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--border)}
+.pp-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-radius:10px;overflow:hidden;margin-bottom:32px}
+.pp-metric{background:var(--surface);padding:20px 16px}
+.pp-metric-val{font-family:'Playfair Display',serif;font-weight:700;font-size:22px;color:var(--purple);display:block;margin-bottom:4px}
+.pp-metric-label{font-size:11px;color:var(--muted);line-height:1.3}
+.pp-section-title{font-family:'Playfair Display',serif;font-weight:700;font-size:14px;color:var(--text);margin-bottom:12px;margin-top:28px;letter-spacing:0.02em}
+.pp-bullets{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.pp-bullets li{font-size:13.5px;color:var(--muted);line-height:1.65;padding-left:20px;position:relative}
+.pp-bullets li::before{content:'→';position:absolute;left:0;color:var(--purple);font-size:11px;top:3px}
+.pp-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.pp-chip{font-family:'JetBrains Mono',monospace;font-size:10px;padding:5px 12px;border-radius:6px;background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+.pp-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}
+.pp-link{font-size:13px;padding:10px 20px;border:1px solid var(--border2);color:var(--muted);text-decoration:none;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:11px;transition:all 0.15s}
+.pp-link:hover{border-color:var(--purple);color:var(--purple)}
+.pp-link.primary{background:var(--purple);color:#fff;border-color:var(--purple);font-weight:600}
+.pp-link.primary:hover{opacity:0.85;color:#fff}
+
+@media(max-width:900px){
+  .sidebar{display:none}
+  .main{margin-left:0}
+  .hero{padding:40px 24px}
+  .section{padding:40px 24px}
+  .featured-row{grid-template-columns:1fr 1fr}
+  .pp-metrics{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .featured-row{grid-template-columns:1fr}
+  .hero-stats{flex-direction:column;gap:16px}
+  .hero-stat+.hero-stat{padding-left:0;border-left:none;border-top:1px solid var(--border);padding-top:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-avatar">CC</div>
+    <div>
+      <div class="logo-name">Cayden Campbell</div>
+      <div class="logo-sub">MSBA · Data Analyst</div>
+    </div>
+  </div>
+
+  <div class="status"><span class="status-dot"></span>Open to Analyst Roles</div>
+
+  <div class="nav-section">Menu</div>
+  <a href="#hero" class="nav-link active"><span class="nav-icon">⌂</span>Home</a>
+  <a href="#featured" class="nav-link"><span class="nav-icon">★</span>Featured</a>
+  <a href="#projects" class="nav-link"><span class="nav-icon">◈</span>All Projects</a>
+  <a href="#about" class="nav-link"><span class="nav-icon">◉</span>About</a>
+
+  <div class="sidebar-stack">
+    <div class="stack-label">Tech Stack</div>
+    <div class="stack-chips">
+      <span class="stack-chip">Python</span><span class="stack-chip">SQL</span>
+      <span class="stack-chip">Pandas</span><span class="stack-chip">Streamlit</span>
+      <span class="stack-chip">Tableau</span><span class="stack-chip">React</span>
+      <span class="stack-chip">TypeScript</span><span class="stack-chip">Scikit-learn</span>
+      <span class="stack-chip">PuLP</span><span class="stack-chip">BigQuery</span>
+    </div>
+  </div>
+
+  <div class="sidebar-contact">
+    <a href="mailto:caydencam9@gmail.com" class="contact-link">✉ caydencam9@gmail.com</a>
+    <a href="https://linkedin.com/in/cayden-campbell" target="_blank" class="contact-link">⟐ linkedin.com/in/cayden-campbell</a>
+    <a href="https://github.com/caydencampbell-9" target="_blank" class="contact-link">⌥ github.com/caydencampbell-9</a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-badge">✦ MSBA Candidate · Pepperdine Graziadio · 4.0 GPA</div>
+    <h1 class="hero-title">I turn data into<br><span>business decisions.</span></h1>
+    <p class="hero-sub">Analytics, modeling, and full-stack product development — from live SaaS to graduate-level optimization models on real government programs.</p>
+    <div class="hero-btns">
+      <a href="#featured" class="btn-primary">View My Work →</a>
+      <a href="mailto:caydencam9@gmail.com" class="btn-ghost">Get In Touch</a>
+    </div>
+
+  </section>
+
+  <!-- FEATURED -->
+  <section class="section" id="featured" style="padding-top:32px;padding-bottom:32px">
+    <div class="section-header">
+      <div class="section-title">Featured Projects</div>
+    </div>
+    <div class="featured-row">
+      <div class="feat-card" onclick="openProject(0)">
+        <div class="feat-img" style="background:#1a1a2e"><img src="/offerreadbanner2.png" alt="OfferRead" onerror="this.style.display='none'"></div>
+        <div class="feat-body">
+          <div class="feat-tag">SaaS · Live Product</div>
+          <div class="feat-title">OfferRead — AI Real Estate Deal Analyzer</div>
+          <div class="feat-desc">Live SaaS platform delivering AI-powered investment verdicts on real estate deals.</div>
+          <div class="feat-chips"><span class="feat-chip">React</span><span class="feat-chip">Claude API</span><span class="feat-chip">Stripe</span></div>
+        </div>
+        <div class="feat-footer">View Project →</div>
+      </div>
+      <div class="feat-card" onclick="openProject(2)">
+        <div class="feat-img" style="background:#111827"><img src="/visualization_efficiency_comparison.png" alt="NEVI" onerror="this.style.display='none'"></div>
+        <div class="feat-body">
+          <div class="feat-tag">MIP Optimization</div>
+          <div class="feat-title">NEVI EV Charging Infrastructure</div>
+          <div class="feat-desc">MIP model optimizing $10M in federal EV charging investment across 400 California sites.</div>
+          <div class="feat-chips"><span class="feat-chip">Python</span><span class="feat-chip">PuLP</span><span class="feat-chip">Folium</span></div>
+        </div>
+        <div class="feat-footer">View Project →</div>
+      </div>
+      <div class="feat-card" onclick="openProject(1)">
+        <div class="feat-img" style="background:#0d1117"><img src="/pepperdinesocial11.png" alt="Social Media" onerror="this.style.display='none'"></div>
+        <div class="feat-body">
+          <div class="feat-tag">Research · Board Presentation</div>
+          <div class="feat-title">University Social Media & Admissions</div>
+          <div class="feat-desc">3-API pipeline across 51 universities. Presented to Pepperdine board.</div>
+          <div class="feat-chips"><span class="feat-chip">Python</span><span class="feat-chip">RapidAPI</span><span class="feat-chip">Pearson r</span></div>
+        </div>
+        <div class="feat-footer">View Project →</div>
+      </div>
+      <div class="feat-card" onclick="openProject(3)">
+        <div class="feat-img" style="background:#1a0a0a"><img src="/ironviz_certificate.png" alt="Iron Viz" onerror="this.style.display='none'"></div>
+        <div class="feat-body">
+          <div class="feat-tag">Competition · 1st Place</div>
+          <div class="feat-title">Iron Viz — Tableau Competition</div>
+          <div class="feat-desc">1st place at Pepperdine × Tableau/Salesforce Iron Viz Data Visualization Competition.</div>
+          <div class="feat-chips"><span class="feat-chip">Tableau</span><span class="feat-chip">Data Storytelling</span></div>
+        </div>
+        <div class="feat-footer">View Project →</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS ROW -->
+  <section class="section" style="padding:24px 56px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface)">
+    <div class="hero-stats" style="max-width:100%;border-top:none;padding-top:0">
+      <div class="hero-stat"><span class="stat-n">1st</span><span class="stat-l">Iron Viz Competition<br>Pepperdine × Tableau</span></div>
+      <div class="hero-stat"><span class="stat-n">4.0</span><span class="stat-l">GPA — MSBA<br>Pepperdine Graziadio</span></div>
+      <div class="hero-stat"><span class="stat-n">Live</span><span class="stat-l">OfferRead.ai<br>Paying customers</span></div>
+      <div class="hero-stat"><span class="stat-n">13</span><span class="stat-l">Analytics Projects<br>End-to-end</span></div>
+    </div>
+  </section>
+
+  <!-- ALL PROJECTS -->
+  <section class="section" id="projects">
+    <div class="section-header">
+      <div class="section-title">All Projects</div>
+      <span style="font-size:12px;color:var(--muted)">13 projects</span>
+    </div>
+    <div class="proj-list" id="projList"></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="section-header"><div class="section-title">About</div></div>
+    <div style="max-width:600px">
+      <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:20px">
+        <strong style="color:var(--text)">Cayden Campbell</strong> is an MSBA candidate at Pepperdine Graziadio Business School (2025–26, 4.0 GPA) with a background in marketing, mathematics, and business management economics.
+      </p>
+      <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:32px">
+        He builds data analytics products targeting roles in <strong style="color:var(--text)">data analysis, marketing analytics, product analytics, and consulting</strong>. Active ventures include <strong style="color:var(--text)">OfferRead.ai</strong> (live monetized SaaS) and <strong style="color:var(--text)">CurbApp</strong> (LA street food vendor map).
+      </p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="achieve-card"><span class="achieve-icon">🏆</span><div><div class="achieve-val">1st Place</div><div class="achieve-label">Iron Viz · Pepperdine × Tableau/Salesforce · March 2026</div></div></div>
+        <div class="achieve-card"><span class="achieve-icon">📊</span><div><div class="achieve-val">Board Research</div><div class="achieve-label">Original social media analysis presented to Pepperdine board</div></div></div>
+        <div class="achieve-card"><span class="achieve-icon">🚀</span><div><div class="achieve-val">Live SaaS</div><div class="achieve-label">OfferRead.ai — AI real estate deal analyzer with paying customers</div></div></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- PROJECT DETAIL PAGE -->
+<div class="proj-page" id="projPage">
+  <div class="proj-page-inner">
+    <button class="back-btn" onclick="closeProject()">← Back to Portfolio</button>
+    <div id="ppImgWrap" style="width:100%;border-radius:12px;overflow:hidden;margin-bottom:32px;border:1px solid var(--border);display:none">
+      <img id="ppImg" src="" alt="" style="width:100%;max-height:320px;object-fit:cover;object-position:top;display:block">
+    </div>
+    <span class="pp-tag" id="ppTag"></span>
+    <h1 class="pp-title" id="ppTitle"></h1>
+    <p class="pp-desc" id="ppDesc"></p>
+    <div class="pp-metrics" id="ppMetrics"></div>
+    <div class="pp-section-title">Tech Stack</div>
+    <div class="pp-chips" id="ppChips"></div>
+    <div class="pp-section-title">Key Findings & Methodology</div>
+    <ul class="pp-bullets" id="ppBullets"></ul>
+    <div class="pp-links" id="ppLinks"></div>
+  </div>
+</div>
+
+<script>
+const projects = [
+  {tag:"SaaS Product · Live",color:"#8B5CF6",title:"OfferRead — AI Real Estate Deal Analyzer",
+   desc:"Full-stack SaaS platform delivering investment verdicts on residential real estate deals. Integrates Rentcast AVM for live pricing data, Claude API for analysis verdicts, and Stripe for payments. Live at offerread.ai with paying customers and founding member pricing.",
+   stack:["React","TypeScript","Claude API","Stripe","Rentcast API","Replit","Resend"],
+   metrics:[{v:"Live",l:"offerread.ai"},{v:"$12/mo",l:"Pro tier"},{v:"3/day",l:"Free verdicts"},{v:"80",l:"Confidence score"}],
+   bullets:["Live at offerread.ai with custom Namecheap domain and Stripe Pro tier ($12/mo)",
+    "Deal verdicts with scenario modeling sliders, confidence scores, and neighborhood intelligence built on live Rentcast AVM data",
+    "Freemium model: 3 free verdicts/day with feature gating — not usage limits — on advanced analytics",
+    "Google Places Autocomplete hero CTA, off-market framing, residential-only scope (SFR, multi-family 2–4, condos)",
+    "Validated concept with MSBA professor; distributed through Reddit real estate communities and Instagram (@OfferReadAI)",
+    "Admin email whitelist, Terms of Service, Privacy Policy, and Restore Access flow all implemented"],
+   img:"/offerreadbanner2.png",imgBg:"#0a0a1a",
+   links:[{t:"Live Site ↗",h:"https://offerread.ai",p:true},{t:"Portfolio ↗",h:"https://caydencampbell-9.github.io"}]},
+
+  {tag:"Research · Board Presentation",color:"#06B6D4",title:"University Social Media & Admissions Analysis",
+   desc:"Engineered a 3-API data pipeline scraping Instagram, TikTok, and YouTube for 51 universities, merged with federal IPEDS 2024 admissions data. Ran Pearson correlation analysis to quantify social media's relationship with admissions outcomes. Delivered 6 strategic recommendations to the Pepperdine board.",
+   stack:["Python","Pandas","RapidAPI","YouTube Data API v3","IPEDS 2024","Pearson r","Seaborn"],
+   metrics:[{v:"+0.530",l:"IG followers → yield r"},{v:"+0.500",l:"TikTok likes → apps r"},{v:"51",l:"Universities"},{v:"87th",l:"Pepperdine IG %ile"}],
+   bullets:["Built pipeline: RapidAPI (Instagram120, TikTok-scraper7) + Google YouTube Data API v3 + IPEDS 2024",
+    "UNITID federal school ID as join key — merged 4 data sources cleanly across 51 universities",
+    "IG followers → yield rate: r=+0.530** · TikTok avg likes → applications: r=+0.500**",
+    "Pepperdine at 87th percentile IG engagement but only 13th percentile yield — actionable gap identified",
+    "YouTube posting: Pepperdine posts every 268 days on average — 91st worst percentile in dataset",
+    "6 data-driven strategic recommendations delivered directly to university board"],
+   img:"/pepperdinesocial11.png",imgBg:"#0d0d0d",
+   links:[{t:"View Deck ↗",h:"/Managing data final project.pdf",p:true},{t:"GitHub ↗",h:"https://github.com/caydencampbell-9/university-social-media-analysis"}]},
+
+  {tag:"Prescriptive Analytics · MIP Optimization",color:"#10B981",title:"NEVI EV Charging Infrastructure Optimization",
+   desc:"Built a Mixed Integer Programming model to optimize site selection and port allocation for California's federal NEVI EV charging program — a $5B live infrastructure initiative. Evaluated 400 candidate sites across three equity-weighted strategies under a $10M budget constraint with mandatory Justice40 DAC compliance.",
+   stack:["Python","PuLP","Google OR-Tools","Folium","Google Colab","Pandas","Matplotlib"],
+   metrics:[{v:"11",l:"Optimal sites"},{v:"168K",l:"ZEVs covered"},{v:"3.6×",l:"Efficiency gain"},{v:"40.2%",l:"DAC Justice40"}],
+   bullets:["MIP with binary site-selection variables (yᵢ ∈ {0,1}) and integer port-count variables (xᵢ ∈ ℤ⁺)",
+    "Regression on 89 months of CA DMV ZEV data: population explains <1% of EV adoption (R²=0.008) — invalidating default siting heuristic",
+    "Three strategies: Population Focus (w₁=0.8), Demand Focus (w₂=0.8), Equity Baseline (w₃=0.8)",
+    "All strategies cleared Justice40's 40% DAC investment mandate while spending 99.5% of $10M budget",
+    "Sensitivity analysis $8M–$30M confirmed linear coverage scaling — no saturation — supporting expanded federal allocation",
+    "Interactive Folium maps with site name, port count, and DAC status tooltips for each strategy"],
+   img:"/visualization_efficiency_comparison.png",imgBg:"#111827",imgContain:true,
+   links:[{t:"Download Deck ↗",h:"/NEVI_Charging_Optimization_JCT.pptx",p:true},{t:"GitHub ↗",h:"https://github.com/caydencampbell-9/NEVI"},{t:"Notebook ↗",h:"https://github.com/caydencampbell-9/NEVI"}]},
+
+  {tag:"Competition · 1st Place",color:"#EF4444",title:"Iron Viz — Tableau Data Visualization Competition",
+   desc:"Won 1st place at the Iron Viz Data Visualization Competition hosted by Pepperdine Graziadio × Tableau/Salesforce (March 7, 2026). Analyzed consumer purchasing behavior across demographics and built an interactive Tableau dashboard judged on analytical depth, visual design, and business communication. Competed against full MSBA cohort.",
+   stack:["Tableau Desktop","Data Storytelling","Consumer Analytics","Visual Design"],
+   metrics:[{v:"1st",l:"Place finish"},{v:"Mar 7",l:"2026"},{v:"Tableau",l:"Platform"},{v:"MSBA",l:"Full cohort"}],
+   bullets:["1st place finish at Pepperdine Graziadio × Tableau/Salesforce Iron Viz Competition",
+    "Judged on analytical depth, visual design quality, and business insight communication",
+    "Dashboard built in Tableau Desktop analyzing consumer category distribution and purchasing behavior across demographics",
+    "Competed against full MSBA cohort — won with consumer analytics dashboard",
+    "Certificate of Participation issued by Pepperdine Graziadio Business School and Tableau/Salesforce",
+    "Dashboard visuals are proprietary competition data and cannot be publicly shared"],
+   img:"/ironviz_certificate.png",imgBg:"#fff",imgContain:true,
+   links:[{t:"View Certificate ↗",h:"/Tableau Event CERTIFICATE OF PARTICIPATION Cayden C Campbell .pdf",p:true}]},
+
+  {tag:"Prescriptive Analytics · Final Project",color:"#F59E0B",title:"Meal Pricing Under Uncertain Demand",
+   desc:"Automation-ready weekly pricing decision engine. Bayesian Normal-Normal conjugate updating blended managerial priors with 456K+ observations, then 400-run Monte Carlo simulation evaluated 4 strategies under uncertainty across 77 fulfillment centers. Strategy B recommended as strictly non-dominated.",
+   stack:["Python","Bayesian Inference","Monte Carlo","OLS","NumPy","SciPy"],
+   metrics:[{v:"$970M",l:"Expected 10-wk profit"},{v:"$9.27M",l:"EVPI ceiling"},{v:"81.3%",l:"Avg service level"},{v:"400",l:"Monte Carlo runs"}],
+   bullets:["Strategy B (Balanced Growth): 6% discount, 25% email, 8% homepage — strictly non-dominated on E[profit] + P10 downside",
+    "EVPI = $9.27M establishes rational ceiling on willingness to pay for better demand signals",
+    "Formal dominance screening eliminated 3 of 4 strategies",
+    "Dual uncertainty: Monte Carlo (400 runs, posterior draws + Neg. Binomial shocks) + Soft/Base/Peak scenario analysis",
+    "Automation pipeline: weekly data pull → Bayesian posterior update → strategy engine → human override gate",
+    "Sensitivity: capacity −10% → −$67.76M profit impact; food cost rate most sensitive assumption"],
+   img:"/prescriptivefinal3.png",imgBg:"#fff",imgContain:true,
+   links:[{t:"View Deck ↗",h:"/final_deck.pdf",p:true},{t:"GitHub ↗",h:"https://github.com/caydencampbell-9/meal-pricing-uncertainty"}]},
+
+  {tag:"Business Intelligence · Streamlit",color:"#3B82F6",title:"Adidas US Sales Performance Dashboard",
+   desc:"Interactive sales analytics dashboard built in Streamlit and Plotly across 9,648 transactions covering $899M in revenue. Regional dropdown and year toggle drive four synchronized visualizations. Built dual versions — AI-enhanced with regression trendlines and a student-authored version.",
+   stack:["Python","Streamlit","Plotly","Pandas","OLS Regression"],
+   metrics:[{v:"9,648",l:"Transactions"},{v:"$899M",l:"Revenue analyzed"},{v:"4",l:"Visualizations"},{v:"6",l:"US regions"}],
+   bullets:["Built dual Streamlit dashboards — AI-enhanced version with Plotly regression trendlines and student-authored version",
+    "Regional dropdown and year radio toggle update all four charts simultaneously via shared session state",
+    "Visualizations: revenue over time (line + trendline), product mix (grouped bar + dual axis), retailer channel split (donut), margin vs. volume (scatter)",
+    "West region highest revenue contributor across both years; online channel strongest margin profile",
+    "AI-enhanced version adds OLS regression overlay and automated insight callouts identifying top performers"],
+   img:"/student_dashboard_picture.png",imgBg:"#0d1117",
+   links:[{t:"GitHub ↗",h:"https://github.com/caydencampbell-9/adidas-sales-dashboard",p:true}]},
+
+  {tag:"Predictive Analytics · Churn Modeling",color:"#F97316",title:"Elements Massage — Churn Prediction Model",
+   desc:"Logistic regression churn model for Elements Massage (regional franchise) to identify at-risk members before cancellation. Delivered risk-tiered outreach queue and quantified intervention economics for front-desk operations. MSBA practicum client project.",
+   stack:["Python","Scikit-learn","Logistic Regression","Pandas","AUC/ROC"],
+   metrics:[{v:"0.720",l:"AUC"},{v:"11.7×",l:"Top vs. bottom lift"},{v:"1,085",l:"Validated records"},{v:"Top 20%",l:"High-risk queue"}],
+   bullets:["Narrowed 2,769 raw records to 1,085 validated paid-primary members through cohort validation",
+    "Logistic regression: AUC 0.720 — top 20% risk queue showed 11.7× lift vs. bottom tier",
+    "Identified therapist dependency as revenue concentration risk — reframed the strategic recommendation",
+    "Delivered operational risk extract workbook: actionable front-desk outreach list with risk scores",
+    "Projected annualized savings at conservative save rate assumptions, quantifying intervention value"],
+   img:"/pepperdinesocial13.png",imgBg:"#0d0d0d",
+   links:[{t:"GitHub ↗",h:"https://github.com/caydencampbell-9",p:true}]},
+
+  {tag:"Prescriptive Analytics · LP Optimization",color:"#10B981",title:"Nurse Staffing Optimization — Unity Health Toronto",
+   desc:"Linear programming model optimizing nurse staffing mix (CCRN, RN, RPN) across 12 forecast months under budget, overtime, and agency cost constraints. Recommended core headcount allocation minimizing $19.35M annual cost. MSBA practicum project.",
+   stack:["Excel Solver","LP Optimization","Multiple Regression","Scenario Analysis"],
+   metrics:[{v:"$19.35M",l:"Optimized cost"},{v:"92.1%",l:"Regular staff ratio"},{v:"3",l:"Nurse types"},{v:"12mo",l:"Forecast horizon"}],
+   bullets:["Regression on 89 months of demand: Multiple R of 0.92 for CCRN, COVID-19 dummy + seasonal month indicators",
+    "LP with regular staff (xⱼ), agency (yₜⱼ), and overtime (zₜⱼ) decision variables across 12 forecast periods",
+    "Scenario A (75% availability): cost rises to $20.77M — validates investment in nurse retention",
+    "Scenario B (55% OT premium): cost drops to $19.37M — confirms overtime policy as primary cost lever",
+    "Recommended 72 CCRNs, 86 RNs, 51 RPNs as core headcount with flexible agency/OT during peaks"],
+   img:"/budgeting_visualization.png",imgBg:"#fff",imgContain:true,
+   links:[{t:"GitHub ↗",h:"https://github.com/caydencampbell-9",p:true}]},
+
+  {tag:"Full-Stack · Live Product",color:"#10B981",title:"CurbApp — LA Street Food Vendor Map",
+   desc:"Live web app mapping verified LA street food vendors with open-now detection, filter logic, and community submission pipeline. Built in React + TypeScript + Leaflet.js. 30+ verified vendors.",
+   stack:["React","TypeScript","Leaflet.js","Vite","Formspree"],
+   metrics:[{v:"30+",l:"Verified vendors"},{v:"Live",l:"App status"},{v:"Leaflet.js",l:"Mapping engine"},{v:"Formspree",l:"Submissions"}],
+   bullets:["Vendor scoring algorithm (vendorScore()) factoring recency, verification status, and open-now logic",
+    "OR logic across filter groups based on user testing — AND logic over-filtered results",
+    "Open-now detection uses LA timezone (America/Los_Angeles) with UTC offset for overnight shifts",
+    "Community submission form connected to Formspree (ID: mlgvdodr) feeding a review pipeline",
+    "Fixed Leaflet pin lazy initialization bug via ResizeObserver waiting for non-zero container dimensions"],
+   img:"/pepperdinesocial14.png",imgBg:"#0d0d0d",
+   links:[{t:"GitHub ↗",h:"https://github.com/caydencampbell-9",p:true}]},
+
+  {tag:"Advanced Analytics · Consumer Modeling",color:"#8B5CF6",title:"Conjoint Analysis & MNL Consumer Preference Model",
+   desc:"Graduate-level conjoint analysis and Multinomial Logit model estimating consumer preference weights across product attributes. Derived willingness-to-pay estimates and simulated market share under competing product configurations.",
+   stack:["Python","MNL Model","Conjoint Analysis","Statsmodels","Scipy"],
+   metrics:[{v:"MNL",l:"Model type"},{v:"WTP",l:"Key output"},{v:"Market Share",l:"Simulation"},{v:"Utility",l:"Attribute weights"}],
+   bullets:["MNL model estimated part-worth utilities for each product attribute level from choice experiment data",
+    "Derived WTP for individual attributes: ratios of attribute utility to price utility coefficient",
+    "Simulated market share under competing product configurations — identified bundle maximizing share",
+    "Graduate-level methodology used in industry pricing and product design decisions"],
+   img:"/zev_coverage_visualization.png",imgBg:"#fff",imgContain:true,
+   links:[{t:"GitHub ↗",h:"https://github.com/caydencampbell-9",p:true}]},
+
+  {tag:"Civic Analytics · EDA",color:"#06B6D4",title:"LA 311 Civic Data Analysis",
+   desc:"Exploratory analysis of LA 311 service request data identifying response time patterns, geographic service gaps, and request volume trends across city departments and neighborhoods.",
+   stack:["Python","Pandas","Matplotlib","Seaborn","GeoPandas"],
+   metrics:[{v:"311",l:"Dataset"},{v:"Geo",l:"Spatial analysis"},{v:"Response Time",l:"Primary metric"},{v:"LA",l:"Scope"}],
+   bullets:["Analyzed service request volume, response time distributions, and closure rates across LA departments",
+    "Geographic segmentation identifying neighborhoods with longest average resolution times",
+    "Time series: seasonal and day-of-week patterns in service demand volume",
+    "Department-level benchmarking of response performance against citywide averages"],
+   img:"/selection_logic_visualization.png",imgBg:"#fff",imgContain:true,
+   links:[{t:"GitHub ↗",h:"https://github.com/caydencampbell-9",p:true}]},
+
+  {tag:"Financial Modeling · Sensitivity Analysis",color:"#F59E0B",title:"E-Commerce ROI Sensitivity Analysis",
+   desc:"Excel-based Monte Carlo sensitivity model evaluating ROI for e-commerce investment scenarios. Simulated distributions across key cost and revenue drivers to produce probability-weighted return estimates for executive decision support.",
+   stack:["Excel","Monte Carlo Simulation","Financial Modeling","Sensitivity Analysis"],
+   metrics:[{v:"Monte Carlo",l:"Method"},{v:"ROI",l:"Primary output"},{v:"Tornado",l:"Chart type"},{v:"Excel",l:"Platform"}],
+   bullets:["Monte Carlo across conversion rate, AOV, CAC, and return rate assumptions",
+    "Tornado chart: conversion rate and CAC were dominant sensitivity levers for ROI variance",
+    "Probability-weighted ROI at 5th/25th/75th/95th percentiles for risk-adjusted decision making",
+    "Scenario comparison: conservative, base, and optimistic cases for executive presentation"],
+   img:"/prescriptivefinal1.png",imgBg:"#fff",imgContain:true,
+   links:[{t:"GitHub ↗",h:"https://github.com/caydencampbell-9",p:true}]},
+
+  {tag:"Business Analysis · Financial Modeling",color:"#8B5CF6",title:"Web Portal Adoption — Business Case",
+   desc:"Financial business case evaluating ROI of a web portal adoption initiative. Applied NPV analysis, two-way sensitivity analysis, and Gartner's Hype Cycle framework to produce a data-driven investment recommendation with IRR of 15.7% vs. 12% WACC.",
+   stack:["Excel","NPV/IRR Analysis","Sensitivity Analysis","Financial Modeling"],
+   metrics:[{v:"15.7%",l:"Project IRR"},{v:"12%",l:"WACC hurdle"},{v:"NPV+",l:"Decision"},{v:"2-Way",l:"Sensitivity"}],
+   bullets:["Identified assumption flaws in base model — applied diminishing marginal returns to adoption curve",
+    "Two-way sensitivity: IRR remains above WACC across conservative adoption rate and cost overrun scenarios",
+    "Applied Gartner's Hype Cycle to contextualize adoption risk and set realistic plateau timeline",
+    "IRR 15.7% vs. 12% WACC — clear positive NPV recommendation with fully documented assumptions"],
+   img:"/prescriptivefinal2.png",imgBg:"#fff",imgContain:true,
+   links:[{t:"GitHub ↗",h:"https://github.com/caydencampbell-9",p:true}]}
+];
+
+// Render project list
+const list = document.getElementById('projList');
+const nums = ["01","02","03","04","05","06","07","08","09","10","11","12","13"];
+projects.forEach((p,i)=>{
+  const r = document.createElement('div');
+  r.className='proj-row';
+  r.onclick=()=>openProject(i);
+  r.innerHTML=`
+    <span class="proj-num">${nums[i]}</span>
+    <div class="proj-info">
+      <div class="proj-tag-row">
+        <span class="proj-tag" style="color:${p.color}">${p.tag}</span>
+      </div>
+      <div class="proj-name">${p.title}</div>
+      <div class="proj-desc">${p.desc.substring(0,120)}...</div>
+    </div>
+    <span class="proj-arrow">↗</span>`;
+  list.appendChild(r);
+});
+
+function openProject(i){
+  const p=projects[i];
+  // Handle hero image
+  const imgWrap=document.getElementById('ppImgWrap');
+  const img=document.getElementById('ppImg');
+  if(p.img){
+    img.src=p.img; img.alt=p.title;
+    imgWrap.style.display='block';
+    imgWrap.style.background=p.imgBg||'var(--surface2)';
+    if(p.imgContain){img.style.objectFit='contain';img.style.background=p.imgBg||'#111'}
+    else{img.style.objectFit='cover';}
+  } else { imgWrap.style.display='none'; }
+  document.getElementById('ppTag').textContent=p.tag;
+  document.getElementById('ppTag').style.color=p.color;
+  document.getElementById('ppTitle').textContent=p.title;
+  document.getElementById('ppDesc').textContent=p.desc;
+  document.getElementById('ppMetrics').innerHTML=p.metrics.map(m=>`
+    <div class="pp-metric">
+      <span class="pp-metric-val" style="color:${p.color}">${m.v}</span>
+      <span class="pp-metric-label">${m.l}</span>
+    </div>`).join('');
+  document.getElementById('ppChips').innerHTML=p.stack.map(s=>`<span class="pp-chip">${s}</span>`).join('');
+  document.getElementById('ppBullets').innerHTML=p.bullets.map(b=>`<li>${b}</li>`).join('');
+  document.getElementById('ppLinks').innerHTML=p.links.map(l=>`
+    <a href="${l.h}" target="_blank" class="pp-link${l.p?' primary':''}">${l.t}</a>`).join('');
+  document.getElementById('projPage').classList.add('open');
+  document.body.style.overflow='hidden';
+  window.scrollTo(0,0);
+}
+
+function closeProject(){
+  document.getElementById('projPage').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeProject()});
+</script>
+</body>
+</html>
